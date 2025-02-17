@@ -1,5 +1,5 @@
 import streamlit as st
-import fitz
+import pymupdf
 from utils.doc_to_quiz import load_quiz_from_doc
 
 def show_document_page():
@@ -33,7 +33,7 @@ def show_document_page():
     if uploaded_file and st.button("Get Quizzes"):
         with st.spinner("Processing document and generating quiz..."):
             st.session_state.generating = True
-            doc = fitz.open(stream=uploaded_file.read(), filetype="pdf")
+            doc = pymupdf.open(stream=uploaded_file.read(), filetype="pdf")
             document_text = "\n".join(page.get_text() for page in doc)
             with st.expander("🔍 Extracted Text Preview", expanded=False):
                 st.text_area("Document Content", document_text, height=300)
