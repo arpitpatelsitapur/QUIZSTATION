@@ -1,6 +1,5 @@
 import streamlit as st
 import pandas as pd
-import fitz  # PyMuPDF for PDF processing
 import google.generativeai as genai
 import re
 
